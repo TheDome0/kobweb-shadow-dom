@@ -18,6 +18,7 @@ kotlin {
         browser {
             webpackTask {
                 mainOutputFileName = "main.js"
+                devtool = "cheap-module-source-map"
             }
         }
         binaries.executable()
@@ -36,7 +37,7 @@ kotlin {
 val extensionBuildDir: Provider<Directory> = project.layout.buildDirectory.dir("playground")
 
 tasks.register<Copy>("prepareExtension") {
-    dependsOn("jsBrowserProductionWebpack")
+    dependsOn("jsBrowserDevelopmentWebpack")
 
     val manifestFile = project.layout.projectDirectory.file("data/manifest.json")
     inputs.file(manifestFile)
@@ -53,7 +54,7 @@ tasks.register<Copy>("prepareExtension") {
         }
     }
 
-    from(project.layout.buildDirectory.file("kotlin-webpack/js/productionExecutable/main.js"))
+    from(project.layout.buildDirectory.file("kotlin-webpack/js/developmentExecutable/main.js"))
     into(extensionBuildDir)
 }
 
