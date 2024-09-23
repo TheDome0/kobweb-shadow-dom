@@ -39,7 +39,7 @@ fun main() {
                 com.varabyte.kobweb.silk.init.initSilkWidgets(ctx)
             }
         )
-        SilkWidgetVariables("ext-root") // replace "ext-root" with "shadow-host": no crash but
+        SilkWidgetVariables("ext-root") // replace "ext-root" with "shadow-host": no crash but no styles
         DeferringHost {
             var input by remember { mutableStateOf("") }
             Column(
